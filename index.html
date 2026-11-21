@@ -1,0 +1,331 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Yaguaretec — Tecnología con garra misionera</title>
+<meta name="description" content="Desarrollo de software de alto rendimiento y estrategias de crecimiento digital gestadas en tierra colorada.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#05070c;
+    --text:#f2f4f8;
+    --muted:#9aa3b2;
+    --orange:#f56b1c;
+    --line:rgba(255,255,255,.1);
+    --gutter:clamp(24px,7.5vw,120px);
+    --top:clamp(20px,4.5vh,52px);
+    --scrim:0;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  html,body{margin:0}
+  body{
+    display:flex;
+    flex-direction:column;
+    min-height:100vh;
+    min-height:100dvh;
+    background:var(--ink);
+    color:var(--text);
+    font:400 16px/1.5 Inter,-apple-system,"Helvetica Neue",Arial,sans-serif;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  /* jaguar: stays put while the content scrolls over it */
+  .bg{
+    position:fixed;
+    inset:0;
+    z-index:-2;
+    background:url(another_yaguarete.jpg) 27% 35%/cover no-repeat var(--ink);
+  }
+  .bg::after{
+    content:"";
+    position:absolute;
+    inset:0;
+    background-color:rgba(5,7,12,calc(.45 + var(--scrim) * .45));
+    background-image:linear-gradient(100deg,rgba(5,7,12,0) 0%,rgba(5,7,12,.25) 32%,rgba(5,7,12,.86) 56%,var(--ink) 78%);
+  }
+
+  .top{
+    position:fixed;
+    top:0;
+    left:0;
+    right:0;
+    z-index:3;
+    display:flex;
+    align-items:center;
+    padding:var(--top) var(--gutter) 18px;
+  }
+  body.scrolled .top{
+    background:linear-gradient(180deg,rgba(5,7,12,.92) 20%,rgba(5,7,12,.6) 65%,transparent);
+  }
+  .logo{font-size:clamp(30px,1.9vw,36px);font-weight:700;letter-spacing:-.02em;text-decoration:none;color:var(--text);white-space:nowrap}
+  nav{
+    position:absolute;
+    left:50%;
+    transform:translateX(-50%);
+    display:flex;
+    gap:46px;
+  }
+  nav a{color:var(--muted);text-decoration:none;font-size:16px}
+  nav a:hover{color:var(--text)}
+
+  .hero{
+    min-height:100dvh;
+    display:flex;
+    flex-direction:column;
+    align-items:flex-end;
+    text-align:right;
+    padding:calc(var(--top) + 48px + clamp(48px,13vh,150px)) var(--gutter) clamp(48px,9vh,120px);
+  }
+  h1{
+    margin:0;
+    font-size:clamp(42px,6.4vw,110px);
+    line-height:1.04;
+    font-weight:700;
+    letter-spacing:-.025em;
+  }
+  h1 em{font-style:normal;color:var(--orange)}
+  .lead{margin:18px 0 0;max-width:26.5em;font-size:clamp(17px,1.56vw,26px);line-height:1.6;color:var(--muted)}
+  .cta{
+    margin-top:clamp(40px,6.5vh,90px);
+    padding:12px 24px;
+    border:1px solid rgba(255,255,255,.28);
+    border-radius:999px;
+    background:rgba(255,255,255,.04);
+    color:var(--text);
+    font-family:inherit;
+    font-size:15px;
+    font-weight:500;
+    line-height:1;
+    white-space:nowrap;
+    text-decoration:none;
+    transition:background .15s,color .15s,border-color .15s;
+  }
+  .cta:hover{background:#fff;border-color:#fff;color:var(--ink)}
+
+  .sec{
+    padding:clamp(72px,11vh,140px) var(--gutter);
+    scroll-margin-top:clamp(72px,11vh,110px);
+  }
+  h2{
+    margin:0;
+    font-size:clamp(28px,3vw,44px);
+    font-weight:700;
+    letter-spacing:-.02em;
+  }
+  h2::before{
+    content:"";
+    display:block;
+    width:34px;
+    height:3px;
+    margin-bottom:22px;
+    border-radius:2px;
+    background:var(--orange);
+  }
+  .sub{margin:16px 0 0;max-width:52ch;color:var(--muted);font-size:17px}
+
+  .grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+    gap:18px;
+    max-width:1200px;
+    margin-top:44px;
+    padding:0;
+    list-style:none;
+  }
+  .card{
+    padding:26px;
+    border:1px solid var(--line);
+    border-radius:16px;
+    background:rgba(9,12,18,.55);
+  }
+  .card h3{margin:0 0 8px;font-size:19px;font-weight:600;letter-spacing:-.01em}
+  .card p{margin:0;color:var(--muted);font-size:15px}
+
+  .cases{
+    max-width:1200px;
+    margin:44px 0 0;
+    padding:0;
+    list-style:none;
+    border-top:1px solid var(--line);
+  }
+  .cases li{
+    display:flex;
+    flex-wrap:wrap;
+    align-items:baseline;
+    gap:6px 20px;
+    padding:24px 0;
+    border-bottom:1px solid var(--line);
+  }
+  .cases b{font-size:19px;font-weight:600}
+  .cases span{flex:1;min-width:200px;color:var(--muted);font-size:15px}
+  .cases em{font-style:normal;color:var(--orange);font-size:15px;font-weight:500;white-space:nowrap}
+
+  .tags{
+    display:flex;
+    flex-wrap:wrap;
+    gap:10px;
+    max-width:900px;
+    margin:44px 0 0;
+    padding:0;
+    list-style:none;
+  }
+  .tags li{
+    padding:9px 16px;
+    border:1px solid var(--line);
+    border-radius:999px;
+    background:rgba(9,12,18,.55);
+    color:var(--muted);
+    font-size:15px;
+  }
+
+  .mail{
+    display:inline-block;
+    margin-top:34px;
+    color:var(--text);
+    font-size:clamp(22px,2.4vw,32px);
+    font-weight:600;
+    letter-spacing:-.02em;
+    text-decoration:none;
+    border-bottom:2px solid var(--orange);
+    padding-bottom:4px;
+  }
+  .addr{margin:22px 0 0;color:var(--muted);font-size:15px}
+
+  footer{
+    padding:28px var(--gutter) 40px;
+    border-top:1px solid var(--line);
+    color:var(--muted);
+    font-size:14px;
+  }
+
+  @media (max-width:900px){
+    .top{padding-bottom:14px}
+    .top nav{display:none}
+    .bg{background-position:32% 28%}
+    .bg::after{background-image:linear-gradient(180deg,rgba(5,7,12,.5),rgba(5,7,12,.68) 45%,rgba(5,7,12,.86))}
+    .hero{
+      align-items:center;
+      text-align:center;
+      padding-top:calc(var(--top) + 62px);
+      padding-bottom:clamp(40px,9vh,90px);
+    }
+    h1{font-size:clamp(46px,17vw,68px);margin-top:auto}
+    .lead{margin-top:auto;padding-top:18px;max-width:26em;font-size:16px}
+    .cta{margin-top:30px}
+    .grid{margin-top:32px}
+    .cases{margin-top:32px}
+    .cases span{min-width:0;flex-basis:100%}
+    .tags{margin-top:32px}
+  }
+</style>
+</head>
+<body>
+  <div class="bg" aria-hidden="true"></div>
+
+  <header class="top">
+    <a class="logo" href="#inicio">Yaguaretec</a>
+    <nav>
+      <a href="#servicios">Servicios</a>
+      <a href="#casos">Casos</a>
+      <a href="#capacidades">Capacidades</a>
+      <a href="#contacto">Contacto</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero" id="inicio">
+      <h1>Tecnología<br>con <em>garra</em><br>misionera</h1>
+      <p class="lead">Desarrollo de software de alto rendimiento y estrategias de crecimiento digital gestadas en tierra colorada.</p>
+      <a class="cta" href="#servicios">Explorar soluciones</a>
+    </section>
+
+    <section class="sec" id="servicios">
+      <h2>Servicios</h2>
+      <p class="sub">Productos, equipos y datos que aguantan el crecimiento sin romperse en el camino.</p>
+      <ul class="grid">
+        <li class="card">
+          <h3>Desarrollo a medida</h3>
+          <p>Plataformas web y APIs construidas para tu operación, no plantillas adaptadas a la fuerza.</p>
+        </li>
+        <li class="card">
+          <h3>Equipos dedicados</h3>
+          <p>Un squad que se suma al tuyo, trabaja en tus repositorios y sigue tus rituales.</p>
+        </li>
+        <li class="card">
+          <h3>Integraciones</h3>
+          <p>Conectamos sistemas, pagos y logística con automatizaciones simples de mantener.</p>
+        </li>
+        <li class="card">
+          <h3>Datos y analítica</h3>
+          <p>Tableros y reportes para decidir con información real y no con intuición.</p>
+        </li>
+      </ul>
+    </section>
+
+    <section class="sec" id="casos">
+      <h2>Casos</h2>
+      <p class="sub">Tres proyectos entregados, tres resultados medibles.</p>
+      <ul class="cases">
+        <li>
+          <b>Cooperativa Yerbal</b>
+          <span>Portal de pedidos B2B y catálogo mayorista.</span>
+          <em>+38% en ventas online</em>
+        </li>
+        <li>
+          <b>Logística Paraná</b>
+          <span>Seguimiento de flota en tiempo real sobre mapa propio.</span>
+          <em>-25% en kilómetros vacíos</em>
+        </li>
+        <li>
+          <b>Salud Misiones</b>
+          <span>Turnos e historias clínicas integradas en una sola app.</span>
+          <em>4.000 turnos por mes</em>
+        </li>
+      </ul>
+    </section>
+
+    <section class="sec" id="capacidades">
+      <h2>Capacidades</h2>
+      <p class="sub">Tecnología probada, equipos chicos y decisiones rápidas.</p>
+      <ul class="tags">
+        <li>React</li>
+        <li>Next.js</li>
+        <li>Node.js</li>
+        <li>TypeScript</li>
+        <li>Python</li>
+        <li>PostgreSQL</li>
+        <li>Docker</li>
+        <li>AWS</li>
+        <li>Kubernetes</li>
+        <li>CI/CD</li>
+        <li>Observabilidad</li>
+        <li>Seguridad</li>
+      </ul>
+    </section>
+
+    <section class="sec" id="contacto">
+      <h2>Contacto</h2>
+      <p class="sub">Contanos qué necesitás y te respondemos en menos de 48 horas.</p>
+      <a class="mail" href="mailto:hola@yaguaretec.com">hola@yaguaretec.com</a>
+      <p class="addr">Posadas, Misiones · Argentina</p>
+    </section>
+  </main>
+
+  <footer>© 2026 Yaguaretec. Hecho en tierra colorada.</footer>
+
+  <script>
+    const root = document.documentElement;
+    const onScroll = () => {
+      const p = Math.min(window.scrollY / window.innerHeight, 1);
+      root.style.setProperty('--scrim', (p * .45).toFixed(3));
+      document.body.classList.toggle('scrolled', window.scrollY > 40);
+    };
+    window.addEventListener('scroll', onScroll, {passive:true});
+    onScroll();
+  </script>
+</body>
+</html>
