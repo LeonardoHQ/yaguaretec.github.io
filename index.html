@@ -39,6 +39,7 @@
     inset:0;
     z-index:-2;
     background:url(another_yaguarete.jpg) 27% 35%/cover no-repeat var(--ink);
+    transform:scaleX(-1); /* mirrors image + gradient together: scrim ends up left, jaguar face right */
   }
   .bg::after{
     content:"";
@@ -104,8 +105,8 @@
     min-height:100dvh;
     display:flex;
     flex-direction:column;
-    align-items:flex-end;
-    text-align:right;
+    align-items:flex-start;
+    text-align:left;
     padding:calc(var(--top) + 48px + clamp(48px,13vh,150px)) var(--gutter) clamp(48px,9vh,120px);
   }
   h1{
