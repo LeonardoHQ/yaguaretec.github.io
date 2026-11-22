@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Yaguaretec — Tecnología con garra misionera</title>
-<meta name="description" content="Desarrollo de software de alto rendimiento y estrategias de crecimiento digital gestadas en tierra colorada.">
+<meta name="description" content="Páginas web, sistemas a medida y marketing para negocios. Sin tecnicismos: vos contanos qué necesitás y nosotros lo hacemos.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -118,25 +118,50 @@
   }
   h1 em{font-style:normal;color:var(--orange)}
   .lead{margin:18px 0 0;max-width:26.5em;font-size:clamp(17px,1.56vw,26px);line-height:1.6;color:var(--muted)}
-  .cta{
+  .cta-row{
     margin-top:clamp(40px,6.5vh,90px);
-    padding:12px 24px;
+    display:flex;
+    align-items:center;
+    gap:12px;
+    flex-wrap:wrap;
+  }
+  .cta{
+    padding:16px 30px;
     border:1px solid rgba(255,255,255,.28);
     border-radius:999px;
     background:rgba(255,255,255,.04);
     color:var(--text);
     font-family:inherit;
-    font-size:15px;
+    font-size:16px;
     font-weight:500;
     line-height:1;
     white-space:nowrap;
     text-decoration:none;
     transition:background .15s,color .15s,border-color .15s;
   }
-  .cta:hover{background:#fff;border-color:#fff;color:var(--ink)}
+  .cta:not(.mate):hover{background:#fff;border-color:#fff;color:var(--ink)}
+  .o{color:var(--muted);font-size:16px}
+
+  @property --a{syntax:"<angle>";initial-value:0deg;inherits:false}
+  .mate{
+    --fill:var(--ink); /* opaque: keeps the gradient visible only on the border ring */
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    border:1px solid transparent;
+    background:
+      linear-gradient(var(--fill),var(--fill)) padding-box,
+      conic-gradient(from var(--a),var(--orange),#ffc37a,var(--orange) 40%,rgba(255,255,255,.35) 60%,var(--orange)) border-box;
+    animation:border-flow 3.2s linear infinite;
+  }
+  .mate:hover{--fill:#161a21;color:var(--text)}
+  .mate svg{width:15px;height:15px;flex:none}
+  @keyframes border-flow{to{--a:360deg}}
 
   .sec{
     min-height:100dvh;
+    display:flex;
+    flex-direction:column;
     padding:clamp(72px,11vh,140px) var(--gutter);
     scroll-margin-top:clamp(72px,11vh,110px);
   }
@@ -147,12 +172,15 @@
     letter-spacing:-.02em;
   }
   .sub{margin:16px 0 0;max-width:52ch;color:var(--muted);font-size:17px}
+  .sub strong{color:var(--text);font-weight:700}
 
   .grid{
+    flex:1;
     display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+    grid-template-columns:repeat(2,minmax(0,1fr));
+    align-content:center;
     gap:18px;
-    max-width:1200px;
+    max-width:1000px;
     margin-top:44px;
     padding:0;
     list-style:none;
@@ -164,49 +192,50 @@
     background:rgba(9,12,18,.45);
     -webkit-backdrop-filter:blur(10px);
     backdrop-filter:blur(10px);
+    transition:border-color .2s,transform .2s;
   }
+  .card:hover{border-color:rgba(255,255,255,.28);transform:translateY(-2px)}
   .card h3{margin:0 0 8px;font-size:19px;font-weight:600;letter-spacing:-.01em}
   .card p{margin:0;color:var(--muted);font-size:15px}
+  .card svg{display:block;width:40px;height:40px;margin-bottom:16px;color:var(--orange)}
 
-  .cases{
-    max-width:1200px;
+  .demos{
+    flex:1;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
     margin:44px 0 0;
     padding:0;
     list-style:none;
     border-top:1px solid var(--line);
   }
-  .cases li{
+  .demos li{
     display:flex;
     flex-wrap:wrap;
-    align-items:baseline;
-    gap:6px 20px;
+    align-items:center;
+    gap:12px 20px;
     padding:24px 0;
     border-bottom:1px solid var(--line);
   }
-  .cases b{font-size:19px;font-weight:600}
-  .cases span{flex:1;min-width:200px;color:var(--muted);font-size:15px}
-  .cases em{font-style:normal;color:var(--orange);font-size:15px;font-weight:500;white-space:nowrap}
-
-  .tags{
-    display:flex;
-    flex-wrap:wrap;
-    gap:10px;
-    max-width:900px;
-    margin:44px 0 0;
-    padding:0;
-    list-style:none;
-  }
-  .tags li{
-    padding:9px 16px;
-    border:1px solid var(--line);
+  .demos b{font-size:19px;font-weight:600}
+  .demos span{flex:1;min-width:200px;color:var(--muted);font-size:15px}
+  .demos a{
+    padding:10px 20px;
+    border:1px solid rgba(255,255,255,.28);
     border-radius:999px;
-    background:rgba(9,12,18,.55);
-    color:var(--muted);
-    font-size:15px;
+    background:rgba(255,255,255,.04);
+    color:var(--text);
+    font-size:14px;
+    font-weight:500;
+    text-decoration:none;
+    transition:background .15s,color .15s,border-color .15s;
   }
+  .demos a:hover{background:#fff;border-color:#fff;color:var(--ink)}
 
   .mail{
-    display:inline-block;
+    display:inline-flex;
+    align-items:center;
+    gap:14px;
     margin-top:34px;
     color:var(--text);
     font-size:clamp(22px,2.4vw,32px);
@@ -216,7 +245,21 @@
     border-bottom:2px solid var(--orange);
     padding-bottom:4px;
   }
-  .addr{margin:22px 0 0;color:var(--muted);font-size:15px}
+  .mail svg{width:.8em;height:.8em}
+  .whats{
+    display:inline-flex;
+    align-items:center;
+    gap:14px;
+    margin-top:18px;
+    color:var(--text);
+    font-size:clamp(22px,2.4vw,32px);
+    font-weight:600;
+    letter-spacing:-.02em;
+    text-decoration:none;
+    border-bottom:2px solid var(--orange);
+    padding-bottom:4px;
+  }
+  .whats svg{width:.8em;height:.8em}
 
   footer{
     padding:28px var(--gutter) 40px;
@@ -258,11 +301,24 @@
     }
     h1{font-size:clamp(46px,17vw,68px);margin-top:auto}
     .lead{margin-top:auto;padding-top:18px;max-width:26em;font-size:16px}
-    .cta{margin-top:30px}
-    .grid{margin-top:32px}
-    .cases{margin-top:32px}
-    .cases span{min-width:0;flex-basis:100%}
-    .tags{margin-top:32px}
+    .cta-row{margin-top:30px;gap:8px;flex-wrap:nowrap}
+    .cta-row .cta{flex:1;padding:14px 10px;font-size:14px;text-align:center;justify-content:center}
+    .o{font-size:14px}
+    .sec{padding:36px var(--gutter) 44px}
+    .sub{font-size:15px}
+    .grid{margin-top:20px;grid-template-columns:1fr;grid-auto-rows:1fr;gap:14px}
+    .card{display:flex;flex-direction:column;justify-content:center;padding:16px 20px}
+    .card svg{width:36px;height:36px;margin-bottom:12px}
+    .card h3{font-size:17px}
+    .card p{font-size:14px}
+    .demos{margin-top:32px}
+    .demos span{min-width:0;flex-basis:100%}
+  }
+
+  @media (max-width:360px){
+    .cta-row .cta{font-size:13px;padding:12px 8px}
+    .mate{gap:5px}
+    .mate svg{width:13px;height:13px}
   }
 </style>
 </head>
@@ -276,8 +332,7 @@
     </button>
     <nav id="menu">
       <a href="#servicios">Servicios</a>
-      <a href="#casos">Casos</a>
-      <a href="#capacidades">Capacidades</a>
+      <a href="#demos">Demos</a>
       <a href="#contacto">Contacto</a>
     </nav>
   </header>
@@ -285,84 +340,82 @@
   <main>
     <section class="hero" id="inicio">
       <h1>Tecnología<br>con <em>garra</em><br>misionera</h1>
-      <p class="lead">Desarrollo de software de alto rendimiento y estrategias de crecimiento digital gestadas en tierra colorada.</p>
-      <a class="cta" href="#servicios">Explorar soluciones</a>
+      <p class="lead">Páginas web, sistemas a medida y marketing para negocios que quieren crecer. Sin tecnicismos: vos contanos qué necesitás, nosotros lo hacemos realidad.</p>
+      <div class="cta-row">
+        <a class="cta" href="#contacto">Contanos tu idea</a>
+        <span class="o">o</span>
+        <!-- shortcut: href="#", apuntar al link de agenda (Cal.com/Calendar) -->
+        <a class="cta mate" href="#">Tomemos un mate
+          <i data-lucide="calendar"></i>
+        </a>
+      </div>
     </section>
 
     <section class="sec" id="servicios">
       <h2>Servicios</h2>
-      <p class="sub">Productos, equipos y datos que aguantan el crecimiento sin romperse en el camino.</p>
+      <p class="sub">Nos encargamos de toda la parte digital de tu negocio — vos solo te ocupás de atender a tus clientes.</p>
       <ul class="grid">
         <li class="card">
-          <h3>Desarrollo a medida</h3>
-          <p>Plataformas web y APIs construidas para tu operación, no plantillas adaptadas a la fuerza.</p>
+          <i data-lucide="search"></i>
+          <h3>Que te encuentren</h3>
+          <p>Web, Google y redes: tu negocio presente donde te busca la gente, con buena pinta y buena letra.</p>
         </li>
         <li class="card">
-          <h3>Equipos dedicados</h3>
-          <p>Un squad que se suma al tuyo, trabaja en tus repositorios y sigue tus rituales.</p>
+          <i data-lucide="settings"></i>
+          <h3>Que todo funcione</h3>
+          <p>Turnos, pedidos, stock y cobros en orden. Herramientas hechas a la medida de tu negocio, no al revés.</p>
         </li>
         <li class="card">
-          <h3>Integraciones</h3>
-          <p>Conectamos sistemas, pagos y logística con automatizaciones simples de mantener.</p>
+          <i data-lucide="shopping-cart"></i>
+          <h3>Que te compren</h3>
+          <p>Campañas y contenido que traen clientes de verdad, no solamente likes.</p>
         </li>
         <li class="card">
-          <h3>Datos y analítica</h3>
-          <p>Tableros y reportes para decidir con información real y no con intuición.</p>
+          <i data-lucide="heart-handshake"></i>
+          <h3>Que estés acompañado</h3>
+          <p>Te explicamos todo en criollo, contestamos rápido y resolvemos. Sin letra chica.</p>
         </li>
       </ul>
     </section>
 
-    <section class="sec" id="casos">
-      <h2>Casos</h2>
-      <p class="sub">Tres proyectos entregados, tres resultados medibles.</p>
-      <ul class="cases">
+    <section class="sec" id="demos">
+      <h2>Demos</h2>
+      <p class="sub">Cosas que ya construimos y podés probar ahora mismo. Imaginate lo mismo funcionando <strong>para tu negocio</strong>.</p>
+      <!-- shortcut: href="#" placeholders, replace with real demo links -->
+      <ul class="demos">
         <li>
-          <b>Cooperativa Yerbal</b>
-          <span>Portal de pedidos B2B y catálogo mayorista.</span>
-          <em>+38% en ventas online</em>
+          <b>Turnos online</b>
+          <span>Reservas para peluquerías, consultorios o talleres: el cliente elige día y hora solo.</span>
+          <a href="#">Probar demo</a>
         </li>
         <li>
-          <b>Logística Paraná</b>
-          <span>Seguimiento de flota en tiempo real sobre mapa propio.</span>
-          <em>-25% en kilómetros vacíos</em>
+          <b>Tienda online</b>
+          <span>Vendé con catálogo, carrito y pagos. Ideal para comercios y emprendimientos.</span>
+          <a href="#">Probar demo</a>
         </li>
         <li>
-          <b>Salud Misiones</b>
-          <span>Turnos e historias clínicas integradas en una sola app.</span>
-          <em>4.000 turnos por mes</em>
+          <b>Menú digital</b>
+          <span>Carta con QR para bares y restaurantes: actualizás precios sin reimprimir nada.</span>
+          <a href="#">Probar demo</a>
         </li>
-      </ul>
-    </section>
-
-    <section class="sec" id="capacidades">
-      <h2>Capacidades</h2>
-      <p class="sub">Tecnología probada, equipos chicos y decisiones rápidas.</p>
-      <ul class="tags">
-        <li>React</li>
-        <li>Next.js</li>
-        <li>Node.js</li>
-        <li>TypeScript</li>
-        <li>Python</li>
-        <li>PostgreSQL</li>
-        <li>Docker</li>
-        <li>AWS</li>
-        <li>Kubernetes</li>
-        <li>CI/CD</li>
-        <li>Observabilidad</li>
-        <li>Seguridad</li>
       </ul>
     </section>
 
     <section class="sec" id="contacto">
       <h2>Contacto</h2>
-      <p class="sub">Contanos qué necesitás y te respondemos en menos de 48 horas.</p>
-      <a class="mail" href="mailto:hola@yaguaretec.com">hola@yaguaretec.com</a>
-      <p class="addr">Posadas, Misiones · Argentina</p>
+      <p class="sub">Contanos qué necesitás — o qué te está costando. Respondemos en menos de 48 horas.</p>
+      <a class="mail" href="mailto:hola@yaguaretec.com"><i data-lucide="mail"></i>hola@yaguaretec.com</a>
+      <!-- shortcut: número de ejemplo; reemplazar por el WhatsApp real -->
+      <a class="whats" href="https://wa.me/5493760000000" target="_blank" rel="noopener">
+        <i data-lucide="phone"></i>
+        +54 9 376 000-0000
+      </a>
     </section>
   </main>
 
   <footer>© 2026 Yaguaretec. Hecho en tierra colorada.</footer>
 
+  <script src="https://unpkg.com/lucide@latest"></script>
   <script>
     const root = document.documentElement;
     const onScroll = () => {
@@ -372,6 +425,8 @@
     };
     window.addEventListener('scroll', onScroll, {passive:true});
     onScroll();
+
+    if (window.lucide) lucide.createIcons();
 
     const burger = document.querySelector('.burger');
     const closeMenu = () => {
